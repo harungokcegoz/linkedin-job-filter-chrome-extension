@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LinkedIn Job Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      width: 300px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-group">
+    <label for="language">Job Description Language</label>
+    <select id="language">
+      <option value="any">Any</option>
+      <option value="english">English</option>
+      <option value="spanish">Dutch</option>
+      <option value="spanish">Turkish</option>
+      <option value="spanish">Spanish</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="experience">Experience Level (years)</label>
+    <input type="number" id="experience" min="0" step="1" placeholder="Max years of experience">
+  </div>
+
+  <div class="form-group">
+    <label for="partTime">Part-Time Possibility or Flexible Hours</label>
+    <select id="partTime">
+      <option value="any">Any</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <button id="saveBtn" onclick="window.location.reload();">Save Preferences</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
