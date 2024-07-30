@@ -20,19 +20,9 @@ function applyFilters() {
       highlight = highlight && commonEnglishWords.test(description);
 
       if (highlight) {
-        const activeJobListItem = document.querySelector('.jobs-search-results__list-item--active');
-        const jobListTitleLinkLabel = activeJobListItem 
-            ? activeJobListItem.querySelector('.job-card-list__title').textContent.trim() 
-            : null;
-        const jobListEmployer = activeJobListItem 
-            ? activeJobListItem.querySelector('.artdeco-entity-lockup__subtitle').innerText
-            : null;
-        const jobDetailsTitle = document.querySelector('.job-details-jobs-unified-top-card__job-title').innerText;
-        const jobDetailsEmployerLinkLabel = document.querySelector('.job-details-jobs-unified-top-card__company-name').textContent.trim();
-
-        const isJobListItemBelongsJobDetails = jobListTitleLinkLabel.includes(jobDetailsTitle) && jobDetailsEmployerLinkLabel.includes(jobListEmployer);
-
-        if (isJobListItemBelongsJobDetails) {
+        const activeJobListItem = document.querySelector('.jobs-search-results-list__list-item--active');
+        
+        if (activeJobListItem) {
           const label = document.createElement('span');
           label.textContent = 'Language Matched';
           label.style.color = 'white';
@@ -42,43 +32,44 @@ function applyFilters() {
           label.style.fontSize = '12px';
           label.style.marginLeft = '10px';
           const jobTitleDiv = activeJobListItem.querySelector('.artdeco-entity-lockup__title');
-          jobTitleDiv.appendChild(label);
+
+          if (jobTitleDiv) jobTitleDiv.appendChild(label);
         }
       }
     }
 
-    // Check experience level
-    if (maxExperience) {
-      const experienceMatch = description.match(/(\d+) (year|years)/);
-      const experience = experienceMatch ? parseInt(experienceMatch[1], 10) : 0;
-      highlight = highlight && experience <= maxExperience;
+    // // Check experience level
+    // if (maxExperience) {
+    //   const experienceMatch = description.match(/(\d+) (year|years)/);
+    //   const experience = experienceMatch ? parseInt(experienceMatch[1], 10) : 0;
+    //   highlight = highlight && experience <= maxExperience;
 
-      if (experienceMatch) {
-        highlightedDescription = highlightedDescription.replace(
-          experienceMatch[0],
-          `<span style="background-color: yellow;">${experienceMatch[0]}</span>`
-        );
-      }
-    }
+    //   if (experienceMatch) {
+    //     highlightedDescription = highlightedDescription.replace(
+    //       experienceMatch[0],
+    //       `<span style="background-color: yellow;">${experienceMatch[0]}</span>`
+    //     );
+    //   }
+    // }
 
-    // Check for part-time possibility
-    if (partTimePreference === 'yes') {
-      const partTimeMatch = description.match(/part-time|flexible hours/i);
-      highlight = highlight && partTimeMatch;
+    // // Check for part-time possibility
+    // if (partTimePreference === 'yes') {
+    //   const partTimeMatch = description.match(/part-time|flexible hours/i);
+    //   highlight = highlight && partTimeMatch;
 
-      if (partTimeMatch) {
-        highlightedDescription = highlightedDescription.replace(
-          partTimeMatch[0],
-          `<span style="background-color: yellow;">${partTimeMatch[0]}</span>`
-        );
-      }
-    }
+    //   if (partTimeMatch) {
+    //     highlightedDescription = highlightedDescription.replace(
+    //       partTimeMatch[0],
+    //       `<span style="background-color: yellow;">${partTimeMatch[0]}</span>`
+    //     );
+    //   }
+    // }
 
-    // Highlight the job if all conditions are met
-    if (highlight) {
-      job.style.backgroundColor = '#FFD700';
-      descriptionElement.innerHTML = highlightedDescription;
-    }
+    // // Highlight the job if all conditions are met
+    // if (highlight) {
+    //   job.style.backgroundColor = '#FFD700';
+    //   descriptionElement.innerHTML = highlightedDescription;
+    // }
    
   });
 }
@@ -87,6 +78,7 @@ function applyFilters() {
 function waitForContentAndApplyFilters() {
   setTimeout(() => {
     applyFilters();
-  }, 1000);
+  }, 2000);
 }
 
+waitForContentAndApplyFilters();
